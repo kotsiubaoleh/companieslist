@@ -13,8 +13,8 @@
             companies = new CompanyContainer();
                  
             for(key in companyMap) {      
-                if (companyMap[key].parentId) {
-                    companyMap[companyMap[key].parentId].addChildCompany(companyMap[key]);
+                if (companyMap[key].getParentId()) {
+                    companyMap[companyMap[key].getParentId()].addChildCompany(companyMap[key]);
                 } else {
                     companies.addChildCompany(companyMap[key])
                 }
@@ -36,8 +36,17 @@
         this.classList.add("selected");
         
         var form = document.forms.companyForm;
-        form.companyname.value = selectedItem.company.name;
-        form.earnings.value = selectedItem.company.earnings;
+        
+        if (!selectedItem.company.hasChildren()) {
+            //form.removeButton.disabled = true;
+            form.removeButton.classList.remove("btn-disabled");
+            form.removeButton.classList.add("btn-remove")
+            form.removeButton.disabled = false;
+        } else {       
+            form.removeButton.classList.add("btn-disabled");
+            form.removeButton.classList.remove("btn-remove")
+            form.removeButton.disabled = true;
+        }
     };
     
     function deselectItem() {
@@ -47,11 +56,12 @@
         var form = document.forms.companyForm;
         form.companyname.value = "";
         form.earnings.value = "";
+        form.removeButton.classList.add("btn-disabled");
+        form.removeButton.classList.remove("btn-remove")
+        form.removeButton.disabled = true;
     }
     
-    document.getElementById("app").addEventListener("click", function(e) {
-        deselectItem();
-    }, true);
+   
     
     function validateNotEmpty(input) {
         if(input.value !== "") {
@@ -75,8 +85,12 @@
         }
     };
     
+     document.getElementById("app").addEventListener("click", function(e) {
+        deselectItem();
+    }, true);
+    
     //Click handler for "Add" button
-    document.getElementById("btn-add").onclick = function(e) {
+    document.forms.companyForm.addButton.onclick = function(e) {
         e.preventDefault();
         
         var form = document.forms.companyForm;
@@ -85,7 +99,7 @@
             | !validateNumber(form.earnings)) return;
         
         var parent = null;
-        if (selectedItem) parent = selectedItem.company.id;
+        if (selectedItem) parent = selectedItem.company.getId();
         
         var data = JSON.stringify({
             name: form.companyname.value,
@@ -98,21 +112,24 @@
             form.earnings.value = "";
             loadCompanies();
         }); 
+        deselectItem();
     }
      
     //Click handler for "Remove" button
-    document.getElementById("btn-remove").onclick = function(e){
+    document.forms.companyForm.removeButton.onclick = function(e){
         e.preventDefault();
         
         if (!selectedItem) return;
         
-        xhr.removeCompany(selectedItem.company.id, function() {
+        xhr.removeCompany(selectedItem.company.getId(), function() {
             loadCompanies();
         });
+        
+        deselectItem();
     }
     
     //Click handler for "Edit" button
-    document.getElementById("btn-edit").onclick = function(e){
+    document.forms.companyForm.editButton.onclick = function(e){
         e.preventDefault();
         
         if (!selectedItem) return;
@@ -127,9 +144,11 @@
             earnings: form.earnings.value
             })
         
-        xhr.editCompany(selectedItem.company.id, data, function() {
+        xhr.editCompany(selectedItem.company.getId(), data, function() {
             loadCompanies();
         });
+        
+        deselectItem();
     }
     
     loadCompanies();

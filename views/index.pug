@@ -7,9 +7,9 @@ block content
     #company-list
   footer
     form#add-form(method="post" action="comp" name="companyForm")
-      input#name-field(name="companyname" type="text" placeholder="Company name...")
-      input#earnings-field(name="earnings" type="text" placeholder="Annual earnings...")
-      input.btn#btn-add(type="submit" value="Add")
-      input.btn#btn-remove(type="submit" value="Remove")
-      input.btn#btn-edit(type="submit" value="Edit")
+      input(name="companyname" type="text" placeholder="Company name...")
+      input(name="earnings" type="text" placeholder="Annual earnings...")
+      input.btn.btn-add(name="addButton" type="submit" value="Add")   
+      input.btn.btn-edit(name="editButton" type="submit" value="Edit")
+      input.btn.btn-disabled(name="removeButton" type="submit" value="Remove" disabled)
         

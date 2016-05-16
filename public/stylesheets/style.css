@@ -36,7 +36,6 @@ li {
     border: 1px solid #aaa;
     border-radius: 5px;
     min-width: 600px;
-    
 }
 
 li:hover {
@@ -68,27 +67,32 @@ input.invalid {
     text-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-#btn-add {
+.btn-add {
     background-color: #4CAF50;
 }
 
-#btn-edit {
+.btn-edit {
     background-color: #4C66AF;
 }
 
-#btn-remove {
+.btn-remove {
     background-color: #AF4C4C;
 }
 
-#btn-add:hover{
+.btn-disabled{
+    background-color: #98999A;
+    color: #BDBDBD;
+}
+
+.btn-add:hover{
     background-color: #3F9C42;
 }
 
-#btn-edit:hover {
+.btn-edit:hover {
     background-color: #3C4A71;
 }
 
-#btn-remove:hover{
+.btn-remove:hover{
     background-color: #904242;
 }
 
