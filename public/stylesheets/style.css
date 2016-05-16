@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  padding: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #eeeeee;
+  color: #444;
+  padding-bottom: 100px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+#app {
+    margin: auto;
+    width: 80%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+    box-shadow: rgba(0,0,0,0.2) 0 0 10px;
+    overflow: auto;
+}
+
+li {
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px 0px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    min-width: 600px;
+    
+}
+
+li:hover {
+    background-color: #eee;
+}
+
+li.selected {
+    background-color: #cfc;
+}
+
+input {  
+    margin-left: 30px;
+    padding: 6px;
+    font-size: 16px;
+}
+
+input.invalid {
+    border: 2px solid red;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 12px 32px; 
+    color: white;
+    border: none;
+    text-align: center;
+    border-radius: 8px;
+    margin: 0xp 12px;
+    text-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#btn-add {
+    background-color: #4CAF50;
+}
+
+#btn-edit {
+    background-color: #4C66AF;
+}
+
+#btn-remove {
+    background-color: #AF4C4C;
+}
+
+#btn-add:hover{
+    background-color: #3F9C42;
+}
+
+#btn-edit:hover {
+    background-color: #3C4A71;
+}
+
+#btn-remove:hover{
+    background-color: #904242;
+}
+
+footer {
+    text-align:center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #E8E8E8;
+    border-top: 1px solid #CACACA;
+}
+
+.earnings {
+    margin-left: 20px;
+}
+
+.money::after {
+    content: "$";
+}
+
+.money {
+    font-weight: bold;
+}
+
+.overall-earnings {
+    float: right;
+}
+
+li {
+    font-size: 20px;
+}
+
+
