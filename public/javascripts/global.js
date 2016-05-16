@@ -13,7 +13,7 @@
             companies = new CompanyContainer();
                  
             for(key in companyMap) {      
-                if (companyMap[key].parentId !== null) {
+                if (companyMap[key].parentId) {
                     companyMap[companyMap[key].parentId].addChildCompany(companyMap[key]);
                 } else {
                     companies.addChildCompany(companyMap[key])
@@ -22,7 +22,9 @@
             
             var companyList = document.getElementById("company-list");
             companyList.innerHTML = "";
-            companyList.appendChild(companies.render(selectItem));
+            var ul = companies.render(selectItem);
+            if (ul) companyList.appendChild(ul);
+            
         });
     }
     

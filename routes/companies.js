@@ -17,6 +17,7 @@ router.get('/', function(req, res, next) {
       if (err) {
           next(err);
       } else  {
+          console.log(rows);
           res.json(rows);  
       }
     });
@@ -24,6 +25,7 @@ router.get('/', function(req, res, next) {
 
 /* Add new company. */
 router.post('/', function(req, res, next) {
+    console.log(req.body);
     pool.query('INSERT INTO companies (name, earnings, parent) VALUES (?,?,?)', 
     [req.body.name, req.body.earnings, req.body.parent], function(err, results){
         if (err) {
