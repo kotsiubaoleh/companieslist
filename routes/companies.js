@@ -5,10 +5,10 @@ var router = express.Router();
 
 var pool = mysql.createPool({
     connectionLimit: 10,
-    host     : 'localhost',
-    user     : 'companies',
-    password : 'rjvgfybz',
-    database : 'companies'
+    host     : process.env['MYSQL_ADDON_HOST'],
+    user     : process.env['MYSQL_ADDON_USER'],
+    password : process.env['MYSQL_ADDON_PASSWORD'],
+    database : process.env['MYSQL_ADDON_DB']
 })
 
 /* GET companies listing. */
