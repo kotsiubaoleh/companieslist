@@ -1,1 +1,15 @@
-README
+MySQL must be installed!
+Open terminal and type:
+
+mysql -u root -p
+CREATE USER 'companies'@'localhost';
+CREATE DATABASE companies;
+USE companies;
+CREATE TABLE companies (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, earnings DECIMAL(17,2), parent INT);
+GRANT SELECT,INSERT,UPDATE,DELETE ON companies TO 'companies'@'localhost'
+SET PASSWORD FOR 'companies'@'localhost' = PASSWORD('rjvgfybz');
+
+Node.js must be installed!
+Open terminal in project directory and type:
+
+npm start
