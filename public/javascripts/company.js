@@ -9,16 +9,16 @@
             this._childCompanies.push(company);
     };
     
-    CompanyContainer.prototype.render = function(onClick) {
+    CompanyContainer.prototype.render = function() {
         if (!this._childCompanies.length) return null;
         
-        var ul = document.createElement('ul');
+        var $ul = $('<ul></ul>');
         
         this._childCompanies.forEach(function (child){
-            ul.appendChild(child.render(onClick));
+            $ul.append(child.render());
         });
         
-        return ul;
+        return $ul;
     };
     
     CompanyContainer.prototype.hasChildren = function() {
@@ -52,34 +52,32 @@
         return overallEarnings;
     };
     
-    Company.prototype.render = function(onClick) {
-        var li = document.createElement('li');
+    Company.prototype.render = function() {
+        var $li = $('<li></li>');
         
-        li.onclick = onClick;
-        li.innerText = this._name;
-        li.company = this;
+        $li.click();
+        $li.text(this._name);
+        $li.get(0).company = this;
         
-        var ul = CompanyContainer.prototype.render.call(this, onClick);
+        var $ul = CompanyContainer.prototype.render.call(this);
         
-        var span = document.createElement('span');
-        span.innerText = "Annual earnings: " + this._earnings.toLocaleString();
-        span.classList.add("earnings");
-        span.classList.add("money");
-        li.appendChild(span);
+        var $span = $('<span></span');
+        $span.text("Annual earnings: " + this._earnings.toLocaleString());
+        $span.addClass("earnings money");
+        $li.append($span);
         
         if (this.hasChildren()) {
-            var span = document.createElement('span');
-            span.innerText = "Overall earnings: " + this.getOverallEarnings().toLocaleString();
-            span.classList.add("overall-earnings");
-            span.classList.add("money");
-            li.appendChild(span);
+            var $span = $('<span></span>');
+            $span.text("Overall earnings: " + this.getOverallEarnings().toLocaleString());
+            $span.addClass("overall-earnings money");
+            $li.append($span);
         }
         
-        var fragment = document.createDocumentFragment();
-        fragment.appendChild(li);
-        if (ul) fragment.appendChild(ul);
+        var $fragment = $(document.createDocumentFragment());
+        $fragment.append($li);
+        if ($ul) $fragment.append($ul);
         
-        return fragment;
+        return $fragment;
     }
     
     window.CompanyContainer = CompanyContainer;

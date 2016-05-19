@@ -79,11 +79,6 @@ input.invalid {
     background-color: #AF4C4C;
 }
 
-.btn-disabled{
-    background-color: #98999A;
-    color: #BDBDBD;
-}
-
 .btn-add:hover{
     background-color: #3F9C42;
 }
@@ -95,6 +90,12 @@ input.invalid {
 .btn-remove:hover{
     background-color: #904242;
 }
+
+.btn:disabled, .btn:disabled:hover{
+    background-color: #98999A;
+    color: #BDBDBD;
+}
+
 
 footer {
     text-align:center;
